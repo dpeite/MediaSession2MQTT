@@ -24,4 +24,10 @@ jobs:
         cache-provider: basic
         validate-wrappers: true
     - name: Build with Gradle
-      run: ./gradlew clean assembleRelease
+      run: ./gradlew clean assembleDebug assembleRelease
+    - name: Upload debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: MediaSession2MQTT-debug-apk
+        path: app/build/outputs/apk/debug/app-debug.apk
+        if-no-files-found: error
